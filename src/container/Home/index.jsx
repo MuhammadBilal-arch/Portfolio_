@@ -45,7 +45,7 @@ export const Home = () => {
                         autoPlay
                         loop
                         muted
-                        class="fixed z-10 w-auto min-w-full min-h-full max-w-none">
+                        className="fixed z-10 w-auto min-w-full min-h-full max-w-none">
                         <source src={ASSETS.HEADER_VIDEO} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>

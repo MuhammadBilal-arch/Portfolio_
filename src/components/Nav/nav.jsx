@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react'
-// import {ASSETS} from '../../assets/path'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaBars, FaTimes } from 'react-icons/fa'
-import Typical from 'react-typical'
+import { TypicalComponent } from '../typical'
 
 export const Nav = () => {
     const navigate = useNavigate()
-
+    const [loop_no, setloop_no] = useState(3)
     const [colorChange, setColorchange] = useState(false)
-    const [str, setstr] = useState()
 
     const [menu, setmenu] = useState(false)
-
     useEffect(() => {
         const changeNavbarColor = () => {
             if (window.scrollY >= 80) {
@@ -25,6 +22,10 @@ export const Nav = () => {
             document.removeEventListener('scroll', changeNavbarColor)
         }
     }, [])
+
+    const latestNews = useMemo(() => {
+        return <TypicalComponent loop_no={loop_no} />
+    }, [loop_no])
 
     return (
         <div className="relative">
@@ -40,16 +41,7 @@ export const Nav = () => {
                     </div>
 
                     <div className="text-white text-xs sm:text-sm lg:text-base xl:text-base Poppins-Regular">
-                        <Typical
-                            steps={[
-                                "I'm Muhammad Bilal",
-                                5000,
-                                "I'm Professional React.js Developer",
-                                7000,
-                            ]}
-                            loop={3}
-                            wrapper="p"
-                        />
+                        {latestNews}
                     </div>
                 </a>
                 <FaBars

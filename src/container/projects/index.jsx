@@ -16,7 +16,7 @@ export const Projects = () => {
                     companies.
                 </div>
             </div>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
                 <div className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer">
                     <img
                         src={ASSETS.PROJECTS.LISTENER_1}
