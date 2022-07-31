@@ -106,7 +106,6 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #3e266b;
-  border-radius: 10px;
 }
 
 /* Handle on hover */

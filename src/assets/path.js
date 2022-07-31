@@ -22,6 +22,8 @@ import REDUX from './img/services/redux.svg'
 import REACT_ from './img/services/react.svg'
 import JS from './img/services/javascript.svg'
 
+import { CONTACT_SVG } from './img/contact/contact_.jsx'
+
 export const ASSETS = {
     HEADER_VIDEO,
     PROFILE_IMG,
@@ -46,9 +48,10 @@ export const ASSETS = {
 
         TAGTEKA,
     },
-    SERVICES:{
+    SERVICES: {
         REDUX,
         REACT_,
-        JS
-    }
+        JS,
+    },
+    CONTACT_SVG,
 }

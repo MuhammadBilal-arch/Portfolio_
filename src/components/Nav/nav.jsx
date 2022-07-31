@@ -2,10 +2,11 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { TypicalComponent } from '../typical'
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll'
+import { MenuList } from './constant'
 
 export const Nav = () => {
-    const navigate = useNavigate()
-    const [loop_no, setloop_no] = useState(3)
+    const [loop_no, setloop_no] = useState(Infinity)
     const [colorChange, setColorchange] = useState(false)
 
     const [menu, setmenu] = useState(false)
@@ -35,7 +36,14 @@ export const Nav = () => {
                         ? 'bg-purple-primary text-white'
                         : 'bg-transparent text-white'
                 } `}>
-                <a href="#home" className="flex jus items-center space-x-2 ">
+                <div
+                    onClick={() =>
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth',
+                        })
+                    }
+                    className="flex items-center space-x-2">
                     <div className="cursor-pointer Poppins-Bold w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full text-orange-primary bg-white text-base sm:text-xl md:text-2xl lg:text-3xl">
                         Hi
                     </div>
@@ -43,25 +51,26 @@ export const Nav = () => {
                     <div className="text-white text-xs sm:text-sm lg:text-base xl:text-base Poppins-Regular">
                         {latestNews}
                     </div>
-                </a>
+                </div>
                 <FaBars
                     className="text-white cursor-pointer block md:hidden"
                     onClick={() => setmenu(!menu)}
                 />
                 <div className="hidden md:flex items-center space-x-3 lg:space-x-6 text-xs lg:text-sm xl:text-base">
                     <div className="space-x-3 lg:space-x-6  flex items-center Poppins-Regular">
-                        <a href="#about" className="cursor-pointer">
-                            About
-                        </a>
-                        <a href="#projects" className="cursor-pointer">
-                            Projects
-                        </a>
-                        <a href="#services" className="cursor-pointer">
-                            Services
-                        </a>
-                        <a href="#contact" className="cursor-pointer">
-                            Contacts
-                        </a>
+                        {MenuList.map(({ path, label }, i) => (
+                            <ScrollLink
+                                activeClass="active text-orange-primary"
+                                className="cursor-pointer "
+                                to={path}
+                                spy={true}
+                                smooth={false}
+                                // offset={-70}
+                                duration={500}
+                                key={i}>
+                                {label}
+                            </ScrollLink>
+                        ))}
                     </div>
                     <div className="space-x-3 lg:space-x-6 flex">
                         <a
@@ -82,32 +91,30 @@ export const Nav = () => {
                         />
                     </div>
                     <div className="space-y-10 text-center Poppins-Regular">
-                        <div
-                            onClick={() => navigate('/about-us')}
-                            className="cursor-pointer">
-                            About Us
-                        </div>
-                        {/* <div
-                            onClick={() => navigate('/pricing')}
-                            className="cursor-pointer">
-                            Pricing
-                        </div> */}
-                        <div
-                            onClick={() => navigate('/custom-solution')}
-                            className="cursor-pointer">
-                            Custom Solutions
-                        </div>
-                        <div>Industries</div>
-                        <div>Resources</div>
-                        <div className="space-x-6 flex">
-                            <button
-                                className="btn-orange-outline"
-                                onClick={() => navigate('login')}>
-                                Login
-                            </button>
-                            <button className="btn-orange-filled">
-                                Free Trial
-                            </button>
+                        <div className="flex flex-col items-center text-xl  space-y-8">
+                            <div className="space-y-8 text-xl  flex flex-col items-center Poppins-Regular">
+                                {MenuList.map(({ path, label }, i) => (
+                                    <ScrollLink
+                                        activeClass="active text-orange-primary"
+                                        className="cursor-pointer "
+                                        to={path}
+                                        spy={true}
+                                        smooth={false}
+                                        // offset={-70}
+                                        duration={500}
+                                        key={i}>
+                                        {label}
+                                    </ScrollLink>
+                                ))}
+                            </div>
+                            <div className="">
+                                <a
+                                    className="btn-orange-filled"
+                                    href="https://www.upwork.com/freelancers/~012804554cc1a6a603"
+                                    target="_blank">
+                                    Get Quote
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

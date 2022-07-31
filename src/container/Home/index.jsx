@@ -19,7 +19,7 @@ export const Home = () => {
     return (
         <div id="home" className="bg-gray-dashboard flex flex-col">
             <div className="h-screen overflow-hidden">
-                <header className="flex items-center justify-center min-h-screen mt-10 overflow-hidden">
+                <header className="flex items-center justify-center min-h-screen  overflow-hidden">
                     <div className={`${toggle ? 'hidden' : 'fixed'} z-30 px-4 sm:px-8 md:pr-24 text-center md:text-left md:left-28   text-white text-2xl sm:text-3xl md:text-4xl xl:text-6xl Poppins-SemiBold w-full  md:w-1/2 xl:w-7/12 space-y-6`}>
                         <div>
                             I love to create beautiful and efficient websites
