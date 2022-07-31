@@ -27,61 +27,65 @@ export const Projects = () => {
                         <div className="text-base Poppins-Medium text-purple-primary">
                             The Listener
                         </div>
-                        <p className="text-xs  Poppins-Regular text-left h-12">
+                        <p className="text-xs  Poppins-Regular text-left h-12 mb-4">
                             TheListener helped numerous people in functioning
                             better and improving their well-being through
                             therapy.
                         </p>
-                        <button className="btn-purple-normal-filled text-xs mt-4">
-                            <a href="https://thelistener.pk/" target="_blank">
-                                Vist TheListener
-                            </a>
-                        </button>
+
+                        <a
+                            className="btn-purple-normal-filled hover:bg-orange-primary hover:text-white text-xs"
+                            href="https://thelistener.pk/"
+                            target="_blank">
+                            Vist TheListener
+                        </a>
                     </div>
                 </div>
                 <div className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer">
                     <img
                         src={ASSETS.PROJECTS.QCAST_2}
                         alt=""
-                        className="w-full max-h-48 h-48 bg-red-error object-cover group-hover:scale-105 duration-1000"
+                        className="w-full max-h-48 h-48 object-cover group-hover:scale-105 duration-1000"
                     />
                     <div className="text-left">
                         <div className="text-base Poppins-Medium text-purple-primary">
                             Qcast
                         </div>
-                        <p className="text-xs  Poppins-Regular text-left h-12">
+                        <p className="text-xs  Poppins-Regular text-left h-12 mb-4">
                             Qcast is a new social network built on visual
                             questions and answers.
                         </p>
-                        <button className="btn-purple-normal-filled text-xs mt-4">
-                            <a href="https://qcast.io/" target="_blank">
-                                Vist Qcast
-                            </a>
-                        </button>
+
+                        <a
+                            className="btn-purple-normal-filled hover:bg-orange-primary hover:text-white text-xs"
+                            href="https://qcast.io/"
+                            target="_blank">
+                            Vist Qcast
+                        </a>
                     </div>
                 </div>
                 <div className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer">
                     <img
                         src={ASSETS.PROJECTS.TAGTEKA}
                         alt=""
-                        className="w-full max-h-48 h-48 object-contain group-hover:scale-105 duration-1000 "
+                        className="w-full max-h-48 h-48 object-cover group-hover:scale-105 duration-1000"
                     />
                     <div className="text-left ">
                         <div className="text-base Poppins-Medium text-purple-primary">
                             Tag Teka
                         </div>
-                        <p className="text-xs  Poppins-Regular text-left h-12">
+                        <p className="text-xs  Poppins-Regular text-left h-12 mb-4">
                             The best RFID asset tracking software to reduce lost
                             equipment, increase productivity, and eliminate
-                            unnecessary asset costs. 
+                            unnecessary asset costs.
                         </p>
-                        <button className="btn-purple-normal-filled text-xs mt-4">
-                            <a
-                                href="https://rfid-two.vercel.app/"
-                                target="_blank">
-                                Vist TagTeka
-                            </a>
-                        </button>
+
+                        <a
+                            className="btn-purple-normal-filled hover:bg-orange-primary hover:text-white text-xs"
+                            href="https://rfid-two.vercel.app/"
+                            target="_blank">
+                            Vist TagTeka
+                        </a>
                     </div>
                 </div>
             </div>
