@@ -3,6 +3,7 @@ import { ASSETS } from '../../assets/path'
 
 export const Home = () => {
     const [toggle, settoggle] = useState(false)
+
     useEffect(() => {
         const changeNavbarColor = () => {
             if (window.scrollY >= 1000) {
@@ -16,11 +17,15 @@ export const Home = () => {
             document.removeEventListener('scroll', changeNavbarColor)
         }
     }, [])
+
     return (
         <div id="home" className="bg-gray-dashboard flex flex-col">
             <div className="h-screen overflow-hidden">
-                <header className="flex items-center justify-center min-h-screen  overflow-hidden">
-                    <div className={`${toggle ? 'hidden' : 'fixed'} z-30 px-4 sm:px-8 md:pr-24 text-center md:text-left md:left-28   text-white text-2xl sm:text-3xl md:text-4xl xl:text-6xl Poppins-SemiBold w-full  md:w-1/2 xl:w-7/12 space-y-6`}>
+                <header className="flex items-center justify-center md:justify-start min-h-screen  overflow-hidden">
+                    <div
+                        className={`${
+                            toggle ? 'hidden' : 'fixed'
+                        } page-padding z-30 mt-20 text-center md:text-left  text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl Poppins-SemiBold sm:w-full md:w-7/12 xl:w-7/12 space-y-6`}>
                         <div>
                             I love to create beautiful and efficient websites
                         </div>

@@ -1,12 +1,11 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useMemo, useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { TypicalComponent } from '../typical'
-import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll'
+import { Link as ScrollLink } from 'react-scroll'
 import { MenuList } from './constant'
 
 export const Nav = () => {
-    const [loop_no, setloop_no] = useState(Infinity)
+    const [loop_no] = useState(Infinity)
     const [colorChange, setColorchange] = useState(false)
 
     const [menu, setmenu] = useState(false)
