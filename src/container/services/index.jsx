@@ -31,19 +31,19 @@ const Services = () => {
             IMG: ASSETS.LANGUAGES.REACT,
         },
         {
+            IMG: ASSETS.LANGUAGES.REDUX,
+        },
+        {
+            IMG: ASSETS.LANGUAGES.TAILWIND,
+        },
+        {
+            IMG: ASSETS.LANGUAGES.FORMIK,
+        },
+        {
+            IMG: ASSETS.LANGUAGES.FIREBASE,
+        },
+        {
             IMG: ASSETS.LANGUAGES.NODEJS,
-        },
-        {
-            IMG: ASSETS.LANGUAGES.MONGODB,
-        },
-        {
-            IMG: ASSETS.LANGUAGES.MYSQL,
-        },
-        {
-            IMG: ASSETS.LANGUAGES.POSTMAN,
-        },
-        {
-            IMG: ASSETS.LANGUAGES.MYSQL,
         },
     ]
 
@@ -90,7 +90,7 @@ const Services = () => {
                         </div>
                     ))}
                     <div  className="bg-white rounded-sm py-10 px-4 space-y-2 flex flex-col items-center  cursor-pointer group hover:shadow-xl duration-1000">
-                        <img src={ASSETS.SERVICES.REDUX} alt="" className='w-16 h-16 group-hover:scale-105 duration-1000`'/>
+                        <img src={ASSETS.SERVICES.REDUX_} alt="" className='w-16 h-16 group-hover:scale-105 duration-1000`'/>
                         <h1 className="Poppins-SemiBold">Redux</h1>
                         <p className="Poppins-Regular text-xs sm:text-sm text-center">
                             I can manage state using redux and redux thunk & Saga also with toolkit.
@@ -114,7 +114,7 @@ const Services = () => {
                                     <img
                                         src={items.IMG}
                                         alt=""
-                                        className="rounded sm:rounded h-14 object-fill   sm:h-20 sm:w-20 sm:object-cover cursor-pointer"
+                                        className="rounded sm:rounded h-14 object-fill  bg-white sm:h-20 sm:w-20 sm:object-cover cursor-pointer"
                                     />
                                 </div>
                             )

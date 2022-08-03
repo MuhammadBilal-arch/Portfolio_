@@ -43,7 +43,7 @@ export const Projects = () => {
                 </div>
                 <div className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer">
                     <img
-                        src={ASSETS.PROJECTS.QCAST_2}
+                        src={ASSETS.PROJECTS.QCAST_1}
                         alt=""
                         className="w-full max-h-48 h-48 object-cover group-hover:scale-105 duration-1000"
                     />
