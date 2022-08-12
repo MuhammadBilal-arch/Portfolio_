@@ -1,27 +1,14 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { TypicalComponent } from '../typical'
 import { Link as ScrollLink } from 'react-scroll'
 import { MenuList } from './constant'
+import { useScroll } from '../../utils/hooks/useScroll'
 
 export const Nav = () => {
     const [loop_no] = useState(Infinity)
-    const [colorChange, setColorchange] = useState(false)
-
     const [menu, setmenu] = useState(false)
-    useEffect(() => {
-        const changeNavbarColor = () => {
-            if (window.scrollY >= 80) {
-                setColorchange(true)
-            } else {
-                setColorchange(false)
-            }
-        }
-        window.addEventListener('scroll', changeNavbarColor)
-        return () => {
-            document.removeEventListener('scroll', changeNavbarColor)
-        }
-    }, [])
+    const { status } = useScroll(80)
 
     const latestNews = useMemo(() => {
         return <TypicalComponent loop_no={loop_no} />
@@ -31,7 +18,7 @@ export const Nav = () => {
         <div className="relative">
             <div
                 className={`page-padding py-5  flex items-center justify-between fixed w-full z-50 duration-1000 ${
-                    colorChange
+                    status
                         ? 'bg-purple-primary text-white'
                         : 'bg-transparent text-white'
                 } `}>
@@ -63,9 +50,9 @@ export const Nav = () => {
                                 className="cursor-pointer "
                                 to={path}
                                 spy={true}
-                                smooth={false}
+                                smooth={true}
                                 // offset={-70}
-                                duration={500}
+                                duration={1000}
                                 key={i}>
                                 {label}
                             </ScrollLink>

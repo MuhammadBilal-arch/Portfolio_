@@ -4,7 +4,7 @@ import { ASSETS } from '../../assets/path'
 import { Heading } from '../../components/heading'
 
 export const About = () => {
-    
+
     return (
         <div
             id="about"

@@ -1,22 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { ASSETS } from '../../assets/path'
+import { useScroll } from '../../utils/hooks/useScroll'
 
 export const Home = () => {
-    const [toggle, settoggle] = useState(false)
-
-    useEffect(() => {
-        const changeNavbarColor = () => {
-            if (window.scrollY >= 1000) {
-                settoggle(true)
-            } else {
-                settoggle(false)
-            }
-        }
-        window.addEventListener('scroll', changeNavbarColor)
-        return () => {
-            document.removeEventListener('scroll', changeNavbarColor)
-        }
-    }, [])
+    const { status } = useScroll(1000)
 
     return (
         <div id="home" className="bg-gray-dashboard flex flex-col">
@@ -24,7 +11,7 @@ export const Home = () => {
                 <header className="flex items-center justify-center md:justify-start min-h-screen  overflow-hidden">
                     <div
                         className={`${
-                            toggle ? 'hidden' : 'fixed'
+                            status ? 'hidden' : 'fixed'
                         } page-padding z-30 mt-20 text-center md:text-left  text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl Poppins-SemiBold sm:w-full md:w-7/12 xl:w-7/12 space-y-6`}>
                         <div>
                             I love to create beautiful and efficient websites

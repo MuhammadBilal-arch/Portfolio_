@@ -8,9 +8,7 @@ import FORMIK from './img/Languges/formik.webp'
 import FIREBASE from './img/Languges/Firebase.webp'
 
 import LISTENER_1 from './img/projects/thelistener/1.webp'
-
 import QCAST_1 from './img/projects/qcast/1.webp'
-
 import TAGTEKA from './img/projects/tagteka/1.webp'
 
 import REDUX_ from './img/services/redux.svg'
