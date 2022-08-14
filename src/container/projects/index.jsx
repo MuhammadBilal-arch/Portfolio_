@@ -3,6 +3,27 @@ import { ASSETS } from '../../assets/path'
 import { Heading } from '../../components/heading'
 
 export const Projects = () => {
+    const ProjectList = [
+        {
+            img: ASSETS.PROJECTS.LISTENER_1,
+            name: 'The Listener',
+            desc: 'TheListener helped numerous people in functioning better and improving their well-being through therapy.',
+            url: 'https://thelistener.pk/',
+        },
+        {
+            img: ASSETS.PROJECTS.QCAST_1,
+            name: 'Qcast',
+            desc: 'Qcast is a new social network built on visual questions and answers.',
+            url: 'https://qcast.io/',
+        },
+        {
+            img: ASSETS.PROJECTS.TAGTEKA,
+            name: 'Tag Teka',
+            desc: 'The best RFID asset tracking software to reduce lost equipment, increase productivity, and eliminate unnecessary asset costs.',
+            url: 'https://rfid-two.vercel.app/',
+        },
+    ]
+
     return (
         <div
             id="projects"
@@ -17,77 +38,30 @@ export const Projects = () => {
                 </div>
             </div>
             <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
-                <div className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer">
-                    <img
-                        src={ASSETS.PROJECTS.LISTENER_1}
-                        alt=""
-                        className="w-full max-h-48 h-48 object-cover group-hover:scale-105 duration-1000 "
-                    />
-                    <div className="text-left">
-                        <div className="text-base Poppins-Medium text-purple-primary">
-                            The Listener
-                        </div>
-                        <p className="text-xs  Poppins-Regular text-left h-12 mb-4">
-                            TheListener helped numerous people in functioning
-                            better and improving their well-being through
-                            therapy.
-                        </p>
+                {ProjectList.map((item, index) => (
+                    <div className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer">
+                        <img
+                            src={item.img}
+                            alt=""
+                            className="w-full max-h-48 h-48 object-cover group-hover:scale-105 duration-1000 "
+                        />
+                        <div className="text-left">
+                            <div className="text-base Poppins-Medium text-purple-primary">
+                                {item.name}
+                            </div>
+                            <p className="text-xs  Poppins-Regular text-left h-12 mb-4">
+                                {item.desc}
+                            </p>
 
-                        <a
-                            className="btn-purple-normal-filled hover:bg-orange-primary hover:text-white text-xs"
-                            href="https://thelistener.pk/"
-                            target="_blank">
-                            Vist TheListener
-                        </a>
-                    </div>
-                </div>
-                <div className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer">
-                    <img
-                        src={ASSETS.PROJECTS.QCAST_1}
-                        alt=""
-                        className="w-full max-h-48 h-48 object-cover group-hover:scale-105 duration-1000"
-                    />
-                    <div className="text-left">
-                        <div className="text-base Poppins-Medium text-purple-primary">
-                            Qcast
+                            <a
+                                className="btn-purple-normal-filled hover:bg-orange-primary hover:text-white text-xs"
+                                href={item.url}
+                                target="_blank">
+                                Visit {item.name}
+                            </a>
                         </div>
-                        <p className="text-xs  Poppins-Regular text-left h-12 mb-4">
-                            Qcast is a new social network built on visual
-                            questions and answers.
-                        </p>
-
-                        <a
-                            className="btn-purple-normal-filled hover:bg-orange-primary hover:text-white text-xs"
-                            href="https://qcast.io/"
-                            target="_blank">
-                            Vist Qcast
-                        </a>
                     </div>
-                </div>
-                <div className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer">
-                    <img
-                        src={ASSETS.PROJECTS.TAGTEKA}
-                        alt=""
-                        className="w-full max-h-48 h-48 object-cover group-hover:scale-105 duration-1000"
-                    />
-                    <div className="text-left ">
-                        <div className="text-base Poppins-Medium text-purple-primary">
-                            Tag Teka
-                        </div>
-                        <p className="text-xs  Poppins-Regular text-left h-12 mb-4">
-                            The best RFID asset tracking software to reduce lost
-                            equipment, increase productivity, and eliminate
-                            unnecessary asset costs.
-                        </p>
-
-                        <a
-                            className="btn-purple-normal-filled hover:bg-orange-primary hover:text-white text-xs"
-                            href="https://rfid-two.vercel.app/"
-                            target="_blank">
-                            Vist TagTeka
-                        </a>
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
     )

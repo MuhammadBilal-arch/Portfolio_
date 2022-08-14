@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 
-export const useScroll = (LIMIT_NUMER) => {
+export const useScroll = (LIMIT_NUMBER) => {
     const [status, setstatus] = useState(false)
     useEffect(() => {
         const changeNavbarColor = () => {
-            if (window.scrollY >= LIMIT_NUMER) {
+            if (window.scrollY >= LIMIT_NUMBER) {
                 setstatus(true)
             } else {
                 setstatus(false)
@@ -18,3 +18,4 @@ export const useScroll = (LIMIT_NUMER) => {
 
     return { status }
 }
+
