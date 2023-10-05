@@ -20,13 +20,13 @@ export const Home = () => {
                             <div className="space-x-3 lg:space-x-6 flex justify-center md:justify-start text-base lg:text-base xl:text-lg">
                                 <a
                                     className="btn-orange-filled"
-                                    href="https://www.upwork.com/freelancers/~012804554cc1a6a603"
+                                    href="https://www.linkedin.com/in/muhammadbilalr/"
                                     target="_blank">
                                     Discover
                                 </a>
                                 <a
                                     className="btn-purple-filled"
-                                    href="https://www.upwork.com/freelancers/~012804554cc1a6a603"
+                                    href="https://www.linkedin.com/in/muhammadbilalr/"
                                     target="_blank">
                                     Contact Me
                                 </a>
