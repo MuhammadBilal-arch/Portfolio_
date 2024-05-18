@@ -61,8 +61,8 @@ export const Nav = () => {
                     <div className="space-x-3 lg:space-x-6 flex">
                         <a
                             className="btn-orange-filled"
-                            // href="https://www.upwork.com/freelancers/~012804554cc1a6a603"
-                            href="https://www.linkedin.com/in/muhammadbilalr/"
+                            href="https://www.upwork.com/freelancers/~012804554cc1a6a603"
+                            // href="https://www.linkedin.com/in/muhammadbilalr/"
                             target="_blank"
                             >
                             Get Quote
@@ -98,8 +98,8 @@ export const Nav = () => {
                             <div className="">
                                 <a
                                     className="btn-orange-filled"
-                                    // href="https://www.upwork.com/freelancers/~012804554cc1a6a603"
-                                    href="https://www.linkedin.com/in/muhammadbilalr/"
+                                    href="https://www.upwork.com/freelancers/~012804554cc1a6a603"
+                                    // href="https://www.linkedin.com/in/muhammadbilalr/"
                                     target="_blank">
                                     Get Quote
                                 </a>

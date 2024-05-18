@@ -15,7 +15,7 @@ export const Footer = () => {
                 Copyright © 2022
                 <a
                     target="_blank"
-                    href={'https://www.linkedin.com/in/muhammadbilalr/'}
+                    href={'https://www.upwork.com/freelancers/muhammadbilalchughtai'}
                     className="cursor-pointer text-white px-1">
                     @MuhammadBilal-Arch.
                 </a>

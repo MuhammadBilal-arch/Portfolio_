@@ -22,6 +22,24 @@ export const Projects = () => {
             desc: 'The best RFID asset tracking software to reduce lost equipment, increase productivity, and eliminate unnecessary asset costs.',
             url: 'https://rfid-two.vercel.app/',
         },
+        {
+            img: ASSETS.PROJECTS.ALIEN_FITNESS,
+            name: 'Alien Fitness',
+            desc: 'Alien Fitness is a gym that helps people with fitness issues. It helps people to maintain their fitness.',
+            url: 'https://alien-fitness-five.vercel.app/',
+        },
+        {
+            img: ASSETS.PROJECTS.GANGAGO,
+            name: 'GangaGo',
+            desc: ' Simplifying access to medicinal dispensaries with features like real-time order tracking and data-driven product suggestions',
+            url: 'http://ganjago-bucket.s3-website-us-east-1.amazonaws.com/',
+        },
+        {
+            img: ASSETS.PROJECTS.UDT,
+            name: 'United Drivers Trust',
+            desc: 'A platform focused on providing drivers to manage vehicle details also a company able to track drivers.',
+            url: 'https://udt-iota.vercel.app/',
+        },
     ]
 
     return (
@@ -39,7 +57,7 @@ export const Projects = () => {
             </div>
             <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
                 {ProjectList.map((item, index) => (
-                    <div className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer">
+                    <div key={index} className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer">
                         <img
                             src={item.img}
                             alt=""

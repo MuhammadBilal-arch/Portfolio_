@@ -39,10 +39,18 @@ export const About = () => {
                         <div className="grid grid-cols-2 gap-4">
                             <div className="">
                                 <div className="text-sm md:text-base Poppins-SemiBold">
+                                    Fiction Developers
+                                </div>
+                                <div className="text-xs sm:text-sm">
+                                    Nov 2023 - Present
+                                </div>
+                            </div>
+                            <div className="">
+                                <div className="text-sm md:text-base Poppins-SemiBold">
                                     The First Sol
                                 </div>
                                 <div className="text-xs sm:text-sm">
-                                    March 2021 - Present
+                                    March 2021 - August 2023
                                 </div>
                             </div>
                             <div className="">
