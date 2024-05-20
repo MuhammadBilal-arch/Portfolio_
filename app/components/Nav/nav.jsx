@@ -1,20 +1,16 @@
 'use client'
 import { useMemo, useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
-import { TypicalComponent } from '../typical'
+import { TypedText, TypicalComponent } from '../typical'
 import { Link as ScrollLink } from 'react-scroll'
 import { MenuList } from './constant'
 import { useScroll } from '../../utils/hooks/useScroll'
 
-export const Nav = () => {
-    const [loop_no] = useState(Infinity)
+export const Nav = () => { 
     const [menu, setmenu] = useState(false)
     const { status } = useScroll(80)
 
-    const latestNews = useMemo(() => {
-        return <TypicalComponent loop_no={loop_no} />
-    }, [loop_no])
-
+    const memoizedTypedText = useMemo(() => <TypedText />, [])
     return (
         <div className="relative">
             <div
@@ -36,7 +32,7 @@ export const Nav = () => {
                     </div>
 
                     <div className="text-white text-xs sm:text-sm lg:text-base xl:text-base Poppins-Regular">
-                        {latestNews}
+                        {memoizedTypedText}
                     </div>
                 </div>
                 <FaBars
