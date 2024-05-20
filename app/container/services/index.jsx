@@ -113,7 +113,7 @@ const Services = () => {
                 </div>
                 <div className="overflow-hidden">
                     <OwlCarousel
-                        className="owl-theme "
+                        className="owl-theme"
                         items={4}
                         loop
                         margin={12}

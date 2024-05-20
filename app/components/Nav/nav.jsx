@@ -11,6 +11,22 @@ export const Nav = () => {
     const { status } = useScroll(80)
 
     const memoizedTypedText = useMemo(() => <TypedText />, [])
+
+    const memoizedMenuItems = useMemo(() => {
+        return MenuList.map(({ path, label }, i) => (
+            <ScrollLink
+                activeClass="active text-orange-primary"
+                className="cursor-pointer"
+                to={path}
+                spy={true}
+                smooth={true}
+                duration={1000}
+                key={i}>
+                {label}
+            </ScrollLink>
+        ));
+    }, [MenuList]);
+
     return (
         <div className="relative">
             <div
@@ -41,19 +57,7 @@ export const Nav = () => {
                 />
                 <div className="hidden md:flex items-center space-x-3 lg:space-x-6 text-xs lg:text-sm xl:text-base">
                     <div className="space-x-3 lg:space-x-6  flex items-center Poppins-Regular">
-                        {MenuList.map(({ path, label }, i) => (
-                            <ScrollLink
-                                activeClass="active text-orange-primary"
-                                className="cursor-pointer "
-                                to={path}
-                                spy={true}
-                                smooth={true}
-                                // offset={-70}
-                                duration={1000}
-                                key={i}>
-                                {label}
-                            </ScrollLink>
-                        ))}
+                       {memoizedMenuItems}
                     </div>
                     <div className="space-x-3 lg:space-x-6 flex">
                         <a
@@ -78,19 +82,7 @@ export const Nav = () => {
                     <div className="space-y-10 text-center Poppins-Regular">
                         <div className="flex flex-col items-center text-xl  space-y-8">
                             <div className="space-y-8 text-xl  flex flex-col items-center Poppins-Regular">
-                                {MenuList.map(({ path, label }, i) => (
-                                    <ScrollLink
-                                        activeClass="active text-orange-primary"
-                                        className="cursor-pointer "
-                                        to={path}
-                                        spy={true}
-                                        smooth={false}
-                                        // offset={-70}
-                                        duration={500}
-                                        key={i}>
-                                        {label}
-                                    </ScrollLink>
-                                ))}
+                                {memoizedMenuItems}
                             </div>
                             <div className="">
                                 <a
