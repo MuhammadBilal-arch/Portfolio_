@@ -17,22 +17,22 @@ export const Projects = () => {
       url: "https://qcast.io/",
     },
     {
+      img: ASSETS.PROJECTS.GANGAGO,
+      name: "GangaGo",
+      desc: "Simplifying access to medicinal dispensaries with features like real-time order tracking and data-driven product suggestions",
+      url: "http://ganjago-bucket.s3-website-us-east-1.amazonaws.com/",
+    },
+    {
       img: ASSETS.PROJECTS.TAGTEKA,
       name: "Tag Teka",
       desc: "The best RFID asset tracking software to reduce lost equipment, increase productivity, and eliminate unnecessary asset costs.",
-      url: "https://rfid-two.vercel.app/",
+      url: "https://mb-blue.vercel.app/",
     },
     {
       img: ASSETS.PROJECTS.ALIEN_FITNESS,
       name: "Alien Fitness",
       desc: "Alien Fitness is a gym that helps people with fitness issues. It helps people to maintain their fitness.",
-      url: "https://alien-fitness-five.vercel.app/",
-    },
-    {
-      img: ASSETS.PROJECTS.GANGAGO,
-      name: "GangaGo",
-      desc: " Simplifying access to medicinal dispensaries with features like real-time order tracking and data-driven product suggestions",
-      url: "http://ganjago-bucket.s3-website-us-east-1.amazonaws.com/",
+      url: "https://mb-blue.vercel.app/",
     },
     {
       img: ASSETS.PROJECTS.UDT,
@@ -45,8 +45,9 @@ export const Projects = () => {
   return (
     <div
       id="projects"
-      className="bg-gradient-to-b from-purple-standard to-gray-lightmedium page-padding text-center space-y-8 py-24 overflow-hidden  text-white min-h-screen z-30"
+      className="bg-gradient-to-b from-purple-standard to-gray-lightmedium page-padding text-center py-24 overflow-hidden  text-white z-30"
     >
+      <div className="max-w-[1440px] mx-auto space-y-8">
       <div className="space-y-4">
         <Heading title="Projects" />
         <div className="Poppins-Regular text-xs sm:text-sm md:text-base lg:text-lg">
@@ -86,6 +87,7 @@ export const Projects = () => {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

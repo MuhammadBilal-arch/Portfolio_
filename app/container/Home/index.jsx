@@ -12,7 +12,7 @@ export const Home = () => {
                     <div
                         className={`${
                             status ? 'hidden' : 'fixed'
-                        } page-padding z-30 mt-20 text-center md:text-left  text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl Poppins-SemiBold sm:w-full md:w-7/12 xl:w-7/12 space-y-6`}>
+                        } max-w-[1440px] mx-auto  page-padding z-30 mt-20  text-center md:text-left  text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl Poppins-SemiBold sm:w-full md:w-7/12 xl:w-7/12 space-y-6`}>
                         <div>
                             I love to create beautiful and efficient websites
                         </div>

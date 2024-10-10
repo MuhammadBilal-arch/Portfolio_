@@ -79,13 +79,13 @@ const Services = () => {
     return (
         <div
             id="services"
-            className="bg-gray-extralight page-padding text-center space-y-8 py-24 overflow-hidden  text-purple-primary z-30">
-            <div className="space-y-10">
+            className="bg-gray-extralight page-padding text-center py-24 overflow-hidden  text-purple-primary z-30">
+            <div className="space-y-10 max-w-[1440px] mx-auto">
                 <div>
                     <Heading title="Services" />
                     <div className="Poppins-Regular text-xs sm:text-sm md:text-base lg:text-lg">
                         Offered services Web design and development have been my
-                        bread and butter for more than 3 years. During that time
+                        bread and butter for more than 3.5 years. During that time
                         I've discovered that I can help startups and companies
                         with the following services
                     </div>
@@ -124,13 +124,13 @@ const Services = () => {
                         dots={false}>
                         {LANGUAGES.map((items, index) => {
                             return (
-                                <div className="space-y-4" key={index}>
-                                    <img
-                                        src={items.IMG.src}
-                                        alt=""
-                                        className="rounded sm:rounded h-14 object-fill  bg-white sm:h-20 sm:w-20 sm:object-contain cursor-pointer"
-                                    />
-                                </div>
+                                <div className="flex justify-center items-center h-20 w-full" key={index}>
+                                <img
+                                    src={items.IMG.src}
+                                    alt=""
+                                    className="rounded h-full w-full object-cover cursor-pointer"
+                                />
+                            </div>
                             )
                         })}
                     </OwlCarousel>
