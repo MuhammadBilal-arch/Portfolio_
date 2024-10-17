@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { CONTACT_SVG } from "@/public/assets/img/contact/contact_";
+import { event } from "nextjs-google-analytics";
 
 export const Contact = () => {
   const [msg, setMessage] = useState(false);
@@ -9,6 +10,10 @@ export const Contact = () => {
   const sendEmail = async (event) => {
     event.preventDefault();
     setMessage(true);
+    event('contact-form-submit', {
+      category: 'User',
+      label: 'Contact Form Submitted',
+    });
     const formData = new FormData(event.target);
 
     try {

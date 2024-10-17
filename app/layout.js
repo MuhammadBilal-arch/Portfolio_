@@ -3,6 +3,7 @@ import "./globals.css";
 import { Nav } from "./components/Nav/nav";
 import { Footer } from "./components/Footer";
 import AOSWrapper from "./components/aos-wrapper";
+import GoogleAnalyticsWrapper from './components/google-analytics';  // Import the client component
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,8 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen select-none">
+          {/* Only Google Analytics is client-side */}
+          <GoogleAnalyticsWrapper />
           <Nav />
           <AOSWrapper>{children}</AOSWrapper>
           <Footer />

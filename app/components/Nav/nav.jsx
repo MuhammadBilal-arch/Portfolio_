@@ -5,6 +5,7 @@ import { TypedText, TypicalComponent } from "../typical";
 import { Link as ScrollLink } from "react-scroll";
 import { MenuList } from "./constant";
 import { useScroll } from "../../utils/hooks/useScroll";
+import { event } from "nextjs-google-analytics";
 
 export const Nav = () => {
   const [menu, setmenu] = useState(false);
@@ -27,6 +28,13 @@ export const Nav = () => {
       </ScrollLink>
     ));
   }, [MenuList]);
+
+  const onGetQuoteClick = () => {
+    event('get-quote-click', {
+      category: 'User',
+      label: 'Nav Get Quote Button',
+    });
+  }
 
   return (
     <div className="relative">
@@ -64,8 +72,9 @@ export const Nav = () => {
             <div className="space-x-3 lg:space-x-6 flex">
               <a
                 className="btn-orange-filled"
+                onClick={onGetQuoteClick}  
                 // href="https://www.upwork.com/freelancers/~012804554cc1a6a603"
-                // href="https://www.linkedin.com/in/muhammadbilalr/"
+                href="https://www.linkedin.com/in/muhammadbilalr/"
                 target="_blank"
               >
                 Get Quote
