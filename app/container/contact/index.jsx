@@ -8,7 +8,7 @@ export const Contact = () => {
   const [loadingMsg, setloadingMsg] = useState(false);
 
   const sendEmail = async (e) => {
-    event.preventDefault();
+    e.preventDefault();
     setMessage(true);
     event('contact-form-submit', {
       category: 'User',
