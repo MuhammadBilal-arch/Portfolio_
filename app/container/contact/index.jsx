@@ -7,14 +7,14 @@ export const Contact = () => {
   const [msg, setMessage] = useState(false);
   const [loadingMsg, setloadingMsg] = useState(false);
 
-  const sendEmail = async (event) => {
+  const sendEmail = async (e) => {
     event.preventDefault();
     setMessage(true);
     event('contact-form-submit', {
       category: 'User',
       label: 'Contact Form Submitted',
     });
-    const formData = new FormData(event.target);
+    const formData = new FormData(e.target);
 
     try {
       const response = await fetch("/api/contact", {
