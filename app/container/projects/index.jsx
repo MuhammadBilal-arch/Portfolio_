@@ -1,6 +1,7 @@
 import { Heading } from "@/app/components/heading";
 import { ASSETS } from "@/public/assets/path";
 import React from "react";
+import Image from "next/image";  // Import Next.js Image component
 
 export const Projects = () => {
   const ProjectList = [
@@ -45,49 +46,49 @@ export const Projects = () => {
   return (
     <div
       id="projects"
-      className="bg-gradient-to-b from-purple-standard to-gray-lightmedium page-padding text-center py-24 overflow-hidden  text-white z-30"
+      className="bg-gradient-to-b from-purple-standard to-gray-lightmedium page-padding text-center py-24 overflow-hidden text-white z-30"
     >
       <div className="max-w-[1440px] mx-auto space-y-8">
-      <div className="space-y-4">
-        <Heading title="Projects" />
-        <div className="Poppins-Regular text-xs sm:text-sm md:text-base lg:text-lg">
-          Listed below are some of the most representative projects I've worked
-          on. They range from basic web design for presentation sites to
-          advanced web development for companies.
-        </div>
-      </div>
-      <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
-        {ProjectList.map((item, index) => (
-          <div
-            key={index}
-            className="  bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer"
-          >
-            <div className="max-h-48 h-48 overflow-hidden">
-              <img
-                src={item.img.src}
-                alt=""
-                className="w-full min-h-48 object-center object-cover group-hover:scale-105 duration-1000 "
-              />
-            </div>
-            <div className="text-left">
-              <div className="text-base Poppins-Medium text-purple-primary">
-                {item.name}
-              </div>
-              <p className="text-xs  Poppins-Regular text-left h-12 mb-4">
-                {item.desc}
-              </p>
-
-              <a
-                className="btn-purple-normal-filled group-hover:bg-orange-primary hover:text-white text-xs"
-                href={item.url}
-                target="_blank"
-              >
-                Visit {item.name}
-              </a>
-            </div>
+        <div className="space-y-4">
+          <Heading title="Projects" />
+          <div className="Poppins-Regular text-xs sm:text-sm md:text-base lg:text-lg">
+            Listed below are some of the most representative projects I've worked on. They range from basic web design for presentation sites to advanced web development for companies.
           </div>
-        ))}
-      </div>
+        </div>
+        <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
+          {ProjectList.map((item, index) => (
+            <div
+              key={index}
+              className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer"
+            >
+              <div className="max-h-48 h-48 overflow-hidden">
+                <Image
+                  src={item.img.src}
+                  alt={item.name}  // Always add meaningful alt text
+                  layout="responsive"
+                  width={500}  // Adjust based on image aspect ratio
+                  height={300}
+                  className="w-full min-h-48 object-center object-cover group-hover:scale-105 duration-1000"
+                />
+              </div>
+              <div className="text-left">
+                <div className="text-base Poppins-Medium text-purple-primary">
+                  {item.name}
+                </div>
+                <p className="text-xs Poppins-Regular text-left h-12 mb-4">
+                  {item.desc}
+                </p>
+                <a
+                  className="btn-purple-normal-filled group-hover:bg-orange-primary hover:text-white text-xs"
+                  href={item.url}
+                  target="_blank"
+                >
+                  Visit {item.name}
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

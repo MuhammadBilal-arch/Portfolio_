@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { TypedText, TypicalComponent } from "../typical";
+import { TypedText } from "../typical";
 import { Link as ScrollLink } from "react-scroll";
 import { MenuList } from "./constant";
 import { useScroll } from "../../utils/hooks/useScroll";
