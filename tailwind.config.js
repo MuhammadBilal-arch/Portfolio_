@@ -23,7 +23,7 @@ module.exports = {
         },
         white: colors.white,
         orange: {
-          primary: "#E08A1E",
+          primary: "#E08A1E", 
         },
         red: {
           error: "red",

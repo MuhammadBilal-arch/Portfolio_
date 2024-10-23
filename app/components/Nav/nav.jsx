@@ -53,7 +53,7 @@ export const Nav = () => {
             }
             className="flex items-center space-x-2"
           >
-            <div className="cursor-pointer Poppins-Bold w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full text-orange-primary bg-white text-base sm:text-xl md:text-2xl lg:text-3xl">
+            <div className="cursor-pointer Poppins-Bold w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full text-orange-primary bg-white text-lg sm:text-xl md:text-2xl lg:text-3xl">
               Hi
             </div>
 

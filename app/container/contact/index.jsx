@@ -2,17 +2,20 @@
 import React, { useState } from "react";
 import { CONTACT_SVG } from "@/public/assets/img/contact/contact_";
 import { event } from "nextjs-google-analytics";
+import { toast } from "react-toastify"; 
+import toastConfig from "@/app/utils/constants";
 
 export const Contact = () => {
   const [msg, setMessage] = useState(false);
-  const [loadingMsg, setloadingMsg] = useState(false);
+  const [MessageSuccess, setMessageSuccess] = useState(false);
 
   const sendEmail = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     setMessage(true);
-    event('contact-form-submit', {
-      category: 'User',
-      label: 'Contact Form Submitted',
+    setMessageSuccess(false);
+    event("contact-form-submit", {
+      category: "User",
+      label: "Contact Form Submitted",
     });
     const formData = new FormData(e.target);
 
@@ -22,21 +25,21 @@ export const Contact = () => {
         body: formData,
       });
 
-      if (!response.ok) { 
+      if (!response.ok) {
         throw new Error(`response status: ${response.status}`);
       }
       const responseData = await response.json();
       console.log(responseData["message"]);
       setMessage(false);
-      event.target.reset();
-      alert("Message successfully sent");
+      setMessageSuccess(true);
+      e.target.reset();
+      toast.success("Your message has been sent successfully! We'll get back to you shortly.", toastConfig);
     } catch (err) {
       console.error(err);
       setMessage(false);
-      alert("Error, please try resubmitting the form");
+      setMessageSuccess(false);
+      toast.error("Oops! Something went wrong while sending your message. Please try again or contact us directly.", toastConfig);
     }
-
-
   };
 
   return (
@@ -66,47 +69,53 @@ export const Contact = () => {
         <form onSubmit={sendEmail}>
           <div className="space-y-4 md:space-y-6 lg:space-y-8">
             <div>
-              <span className="uppercase text-sm text-gray-normal Poppins-SemiBold">
+              <label className="uppercase text-sm text-gray-normal Poppins-SemiBold">
                 Full Name
-              </span>
+              </label>
               <input
                 className="w-full bg-gray-300 text-gray-900 mt-2 p-3 focus:outline-none focus:shadow-outline"
                 type="text"
                 required
                 name="name"
-                placeholder=""
+                placeholder="Your Full Name"
               />
             </div>
-            <div className="">
-              <span className="uppercase text-sm text-gray-normal Poppins-SemiBold">
+            <div>
+              <label className="uppercase text-sm text-gray-normal Poppins-SemiBold">
                 Email
-              </span>
+              </label>
               <input
                 name="email"
                 className="w-full bg-gray-300 text-gray-900 mt-2 p-3 focus:outline-none focus:shadow-outline"
                 type="email"
                 required
+                placeholder="Your Email"
               />
             </div>
-            <div className="">
-              <span className="uppercase text-sm text-gray-normal Poppins-SemiBold">
+            <div>
+              <label className="uppercase text-sm text-gray-normal Poppins-SemiBold">
                 Message
-              </span>
+              </label>
               <textarea
                 name="message"
                 required
                 className="w-full h-32 bg-gray-300 text-gray-900 mt-2 p-3 focus:outline-none focus:shadow-outline"
+                placeholder="Your Message"
               ></textarea>
             </div>
-            <div className="">
+            <div>
               <button
                 type="submit"
-                className="uppercase btn-purple-filled text-sm Poppins-SemiBold tracking-wide hover:text-orange-primary p-3  w-full"
+                className="uppercase btn-purple-filled text-sm Poppins-SemiBold tracking-wide hover:text-orange-primary p-3 w-full"
+                aria-live="polite"
               >
                 {msg ? "Sending Email..." : "Send Message"}
               </button>
-              <div className="text-purple-primary text-sm py-1 text-center">
-                {loadingMsg && " Message Sent Successfully "}
+              <div
+                className="text-purple-primary text-sm py-1 text-center"
+                aria-live="assertive"
+              >
+                {MessageSuccess && "Message Sent Successfully "}
               </div>
             </div>
           </div>
