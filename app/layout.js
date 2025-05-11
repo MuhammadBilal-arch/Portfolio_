@@ -25,7 +25,7 @@ export const metadata = {
     siteName: "Muhammad Bilal Portfolio",
     images: [
       {
-        url: "https://mb-blue.vercel.app/og-image.png",
+        url: "https://mb-blue.vercel.app/og-image.jpeg",
         width: 1200,
         height: 630,
         alt: "Muhammad Bilal Portfolio Preview",
