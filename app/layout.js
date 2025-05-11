@@ -11,9 +11,42 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Muhammad Bilal",
-  description: "Muhammad Bilal - Portfolio 0.1",
+  title: "Muhammad Bilal | Portfolio",
+  description: "Official portfolio website of Muhammad Bilal, showcasing projects, skills, and contact information.",
+  keywords: ["Muhammad Bilal", "Portfolio", "Web Developer", "Full Stack Developer", "Next.js", "React", "JavaScript"],
+  authors: [{ name: "Muhammad Bilal", url: "https://mb-blue.vercel.app" }],
+  creator: "Muhammad Bilal",
+  publisher: "Muhammad Bilal",
+  metadataBase: new URL("https://mb-blue.vercel.app"),
+  openGraph: {
+    title: "Muhammad Bilal | Portfolio",
+    description: "Showcasing projects, skills, and contact details of Muhammad Bilal.",
+    url: "https://mb-blue.vercel.app",
+    siteName: "Muhammad Bilal Portfolio",
+    images: [
+      {
+        url: "https://mb-blue.vercel.app/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Muhammad Bilal Portfolio Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
 };
+
 const frontendApi = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 export default function RootLayout({ children }) {
