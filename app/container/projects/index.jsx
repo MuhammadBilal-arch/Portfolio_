@@ -2,47 +2,24 @@ import { Heading } from "@/app/components/heading";
 import { ASSETS } from "@/public/assets/path";
 import React from "react";
 import Image from "next/image";  // Import Next.js Image component
+import Link from "next/link";
 
-export const Projects = () => {
-  const ProjectList = [
-    {
-      img: ASSETS.PROJECTS.LISTENER_1,
-      name: "The Listener",
-      desc: "TheListener helped numerous people in functioning better and improving their well-being through therapy.",
-      url: "https://thelistener.pk/",
-    },
-    {
-      img: ASSETS.PROJECTS.QCAST_1,
-      name: "Qcast",
-      desc: "Qcast is a new social network built on visual questions and answers.",
-      url: "https://qcast.io/",
-    },
-    {
-      img: ASSETS.PROJECTS.GANGAGO,
-      name: "GangaGo",
-      desc: "Simplifying access to medicinal dispensaries with features like real-time order tracking and data-driven product suggestions",
-      url: "http://ganjago-bucket.s3-website-us-east-1.amazonaws.com/",
-    },
-    {
-      img: ASSETS.PROJECTS.TAGTEKA,
-      name: "Tag Teka",
-      desc: "The best RFID asset tracking software to reduce lost equipment, increase productivity, and eliminate unnecessary asset costs.",
-      url: "https://mb-blue.vercel.app/",
-    },
-    {
-      img: ASSETS.PROJECTS.ALIEN_FITNESS,
-      name: "Alien Fitness",
-      desc: "Alien Fitness is a gym that helps people with fitness issues. It helps people to maintain their fitness.",
-      url: "https://mb-blue.vercel.app/",
-    },
-    {
-      img: ASSETS.PROJECTS.UDT,
-      name: "United Drivers Trust",
-      desc: "A platform focused on providing drivers to manage vehicle details also a company able to track drivers.",
-      url: "https://udt-iota.vercel.app/",
-    },
-  ];
+export const dynamic = "force-dynamic";
 
+async function getProjects(page = 1, limit = 6) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/projects/get?page=${page}&limit=${limit}`,
+    { cache: "no-store" }
+  );
+  if (!res.ok) throw new Error("Failed to fetch projects");
+  return res.json();
+}
+
+export const Projects = async ({ searchParams }) => {
+  const page = parseInt(searchParams?.page || "1", 10);
+  const limit = 6;
+
+  const { projects, totalPages } = await getProjects(page, limit);
   return (
     <div
       id="projects"
@@ -55,39 +32,57 @@ export const Projects = () => {
             Listed below are some of the most representative projects I've worked on. They range from basic web design for presentation sites to advanced web development for companies.
           </div>
         </div>
-        <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
-          {ProjectList.map((item, index) => (
-            <div
-              key={index}
-              className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer"
-            >
-              <div className="max-h-48 h-48 overflow-hidden">
-                <Image
-                  src={item.img.src}
-                  alt={item.name}  // Always add meaningful alt text
-                  layout="responsive"
-                  width={500}  // Adjust based on image aspect ratio
-                  height={300}
-                  className="w-full min-h-48 object-center object-cover group-hover:scale-105 duration-1000"
-                />
-              </div>
-              <div className="text-left">
-                <div className="text-base Poppins-Medium text-purple-primary">
-                  {item.name}
-                </div>
-                <p className="text-xs Poppins-Regular text-left h-12 mb-4">
-                  {item.desc}
-                </p>
-                <a
-                  className="btn-purple-normal-filled group-hover:bg-orange-primary hover:text-white text-xs"
-                  href={item.url}
-                  target="_blank"
+        {
+          projects?.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 w-full">
+              {projects?.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer"
                 >
-                  Visit {item.name}
-                </a>
-              </div>
+                  {item?.images.length > 0 && (
+                    <div className="max-h-48 h-48 overflow-hidden">
+                      <Image
+                        src={item?.images[0] || ''}
+                        alt={item?.title}
+                        width={500}
+                        height={300}
+                        className="w-full min-h-48 object-center object-cover group-hover:scale-105 duration-1000"
+                      />
+                    </div>
+                  )}
+                  <div className="text-left">
+                    <div className="text-base Poppins-Medium text-purple-primary">
+                      {item.title}
+                    </div>
+                    <p
+                      title={item.description}
+                      className="text-xs Poppins-Regular text-left h-12 mb-4 line-clamp-2">
+                      {item.description}
+                    </p>
+                    <a
+                      className="btn-purple-normal-filled group-hover:bg-orange-primary hover:text-white text-xs"
+                      href={item.links}
+                      target="_blank"
+                    >
+                      Visit Website
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>) : (
+            <div className="text-center text-gray-primary max-h-[50vh] min-h-[50vh] border border-white-primary rounded-md p-4 w-full flex flex-col items-center justify-center justify-self-center">
+              <h1 className="text-xl font-semibold mb-4 text-white">No projects found</h1>
+              <Link href="/projects/add">
+                <button className="btn-purple-normal-filled">Add Project</button>
+              </Link>
             </div>
-          ))}
+          )
+        }
+        <div className="flex justify-center items-center">
+          <Link href="/projects-list">
+            <button title="View All Projects" className="btn-purple-normal-filled">View All Projects</button>
+          </Link>
         </div>
       </div>
     </div>

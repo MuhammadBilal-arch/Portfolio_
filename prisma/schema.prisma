@@ -28,6 +28,8 @@ model Project {
   priority    Int
   tech_stack  String
   type        Project_type
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum Project_type {

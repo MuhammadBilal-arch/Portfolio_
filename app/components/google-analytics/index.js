@@ -1,5 +1,4 @@
-// app/components/GoogleAnalyticsWrapper.js
-"use client";  // Make only this component a client-side component
+"use client";  
 
 import { GoogleAnalytics } from 'nextjs-google-analytics';
 

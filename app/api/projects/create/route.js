@@ -9,19 +9,17 @@ export async function POST(request) {
   // Get project details
   const projectTitle = formData.get("title");
   const projectDescription = formData.get("description");
-  const imageFiles = formData.getAll("images"); // Assuming you send multiple images
+  const imageFiles = formData.getAll("images"); 
   const priority = formData.get("priority");
   const link = formData.get("link");
   const type = formData.get("type");
   const tech_stack = formData.get("tech_stack");
 
   try {
-    // Upload images to Cloudinary
     const uploadPromises = imageFiles.map(async (file) => {
-      const buffer = await file.arrayBuffer(); // Convert File to ArrayBuffer
-      const bufferFile = Buffer.from(buffer); // Convert ArrayBuffer to Buffer
+      const buffer = await file.arrayBuffer(); 
+      const bufferFile = Buffer.from(buffer); 
 
-      // Upload buffer to Cloudinary and return the result
       return new Promise((resolve, reject) => {
         const uploadStream = cloudinary.uploader.upload_stream(
           { folder: "projects" },
@@ -30,7 +28,7 @@ export async function POST(request) {
             resolve(result);
           }
         );
-        uploadStream.end(bufferFile); // Send the buffer to Cloudinary
+        uploadStream.end(bufferFile); 
       });
     });
 
@@ -44,16 +42,15 @@ export async function POST(request) {
       data: {
         title: projectTitle,
         description: projectDescription,
-        priority: priority,
         link: link,
         type: type,
         priority: Number(priority),
         tech_stack: tech_stack,
-        images: imageUrls.length > 0 ? imageUrls : null, // Store image URLs or null if none
+        images: imageUrls.length > 0 ? imageUrls : null,
       },
     });
 
-    return NextResponse.json({ message: "Project created successfully", project: newProject });
+    return NextResponse.json({ message: "Project created successfully", data: newProject });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ message: "Could not create project" }, { status: 500 });
