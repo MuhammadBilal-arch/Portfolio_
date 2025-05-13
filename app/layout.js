@@ -1,13 +1,13 @@
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import AOSWrapper from "./components/aos-wrapper";
-import GoogleAnalyticsWrapper from './components/google-analytics';  // Import the client component
-import { ClerkProvider } from "@clerk/nextjs"
+import GoogleAnalyticsWrapper from './components/google-analytics';
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
-  subsets: ["latin"], // Add this line to load Poppins font
-  weight: ["400", "500", "600", "700"], // Specify the weights you want to use
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata = {
@@ -51,8 +51,8 @@ const frontendApi = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider frontendApi={frontendApi}
-
+    <ClerkProvider
+      frontendApi={frontendApi}
       signInUrl="/auth/sign-in"
       signUpUrl="/auth/sign-up"
       signInFallbackRedirectUrl="/projects"
@@ -60,15 +60,18 @@ export default function RootLayout({ children }) {
     >
       <html lang="en">
         <head>
-          {/* Asynchronous loading of JS */}
+          <meta property="og:title" content="Muhammad Bilal | Portfolio" />
+          <meta property="og:description" content="Showcasing projects, skills, and contact details of Muhammad Bilal." />
+          <meta property="og:url" content="https://mb-blue.vercel.app" />
+          <meta property="og:image" content="https://mb-blue.vercel.app/og-image.jpeg" />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="Muhammad Bilal Portfolio" />
           <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" async></script>
           <script src="https://kit.fontawesome.com/3b43a9a3b1.js" async crossOrigin="anonymous"></script>
         </head>
         <body className={`${inter.className} ${poppins.className}`}>
           <div className="flex flex-col min-h-screen select-none">
-            {/* Only Google Analytics is client-side */}
             <GoogleAnalyticsWrapper />
-
             <AOSWrapper>{children}</AOSWrapper>
           </div>
         </body>

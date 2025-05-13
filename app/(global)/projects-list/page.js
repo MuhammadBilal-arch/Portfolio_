@@ -23,6 +23,11 @@ export default async function ProjectsPage({ searchParams }) {
     <div className="mx-auto relative overflow-hidden bg-gradient-to-b from-purple-standard to-gray-lightmedium text-white z-30">
       <main className="min-h-screen px-5 sm:px-12 md:px-14 lg:px-20 py-10">
         <div className="mx-auto space-y-8 text-center">
+          <div className="flex justify-end">
+          <Link href="/">
+            <button className="bg-orange-primary text-white px-5 py-1.5 rounded-md">Back</button>
+          </Link>
+          </div>
           <div className="space-y-4">
             <Heading title="Projects" />
             <p className="Poppins-Regular text-xs sm:text-sm md:text-base lg:text-lg">
@@ -30,7 +35,6 @@ export default async function ProjectsPage({ searchParams }) {
             </p>
           </div>
 
-          {/* Projects Grid */}
           {
             projects?.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 w-full">
@@ -43,8 +47,8 @@ export default async function ProjectsPage({ searchParams }) {
                       <div className="max-h-48 h-48 overflow-hidden">
                         <Image
                           src={item?.images[0] || ''}
-                          alt={item?.title} 
-                          width={500} 
+                          alt={item?.title}
+                          width={500}
                           height={300}
                           className="w-full min-h-48 object-center object-cover group-hover:scale-105 duration-1000"
                         />
@@ -83,8 +87,8 @@ export default async function ProjectsPage({ searchParams }) {
             <Link
               href={`/projects-list?page=${page > 1 ? page - 1 : 1}`}
               className={`px-4 py-2 rounded-full text-white border transition ${page === 1
-                  ? "bg-transparent border-white text-gray-primary cursor-not-allowed"
-                  : "bg-transparent border-white hover:bg-white hover:text-black"
+                ? "bg-transparent border-white text-gray-primary cursor-not-allowed"
+                : "bg-transparent border-white hover:bg-white hover:text-black"
                 }`}
             >
               Prev
@@ -94,18 +98,18 @@ export default async function ProjectsPage({ searchParams }) {
                 key={i}
                 href={`/projects-list?page=${i + 1}`}
                 className={`px-4 py-2 rounded-full text-black-dark border transition ${i + 1 === page
-                    ? "bg-white text-black-dark font-bold"
-                    : "bg-transparent border-white hover:bg-white hover:text-black-dark"
+                  ? "bg-white text-black-dark font-bold"
+                  : "bg-transparent border-white hover:bg-white hover:text-black-dark"
                   }`}
               >
-                {i + 1} 
+                {i + 1}
               </Link>
             ))}
             <Link
               href={`/projects-list?page=${page < totalPages ? page + 1 : totalPages}`}
               className={`px-4 py-2 rounded-full text-white border transition ${page === totalPages
-                  ? "bg-transparent border-white text-gray-primary cursor-not-allowed"
-                  : "bg-transparent border-white hover:bg-white hover:text-black-dark"
+                ? "bg-transparent border-white text-gray-primary cursor-not-allowed"
+                : "bg-transparent border-white hover:bg-white hover:text-black-dark"
                 }`}
             >
               Next
