@@ -1,18 +1,22 @@
 import { Heading } from "@/app/components/heading";
-import { ASSETS } from "@/public/assets/path";
 import React from "react";
-import Image from "next/image";  // Import Next.js Image component
+import Image from "next/image"; 
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
 async function getProjects(page = 1, limit = 6) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/projects/get?page=${page}&limit=${limit}`,
-    { cache: "no-store" }
-  );
-  if (!res.ok) throw new Error("Failed to fetch projects");
-  return res.json();
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/projects/get?page=${page}&limit=${limit}`,
+      { cache: "no-store" }
+    );
+    if (!res.ok) throw new Error("Failed to fetch projects");
+    return await res.json();
+  } catch (error) {
+    console.error("getProjects Error:", error);
+    return { projects: [], totalPages: 0 };
+  }
 }
 
 export const Projects = async ({ searchParams }) => {
@@ -60,13 +64,13 @@ export const Projects = async ({ searchParams }) => {
                       className="text-xs Poppins-Regular text-left h-12 mb-4 line-clamp-2">
                       {item.description}
                     </p>
-                    <a
-                      className="btn-purple-normal-filled group-hover:bg-orange-primary hover:text-white text-xs"
-                      href={item.links}
-                      target="_blank"
-                    >
-                      Visit Website
-                    </a>
+
+                      <Link
+                        className="btn-purple-normal-filled group-hover:bg-orange-primary hover:text-white text-xs py-2.5 px-3"
+                        href='/'
+                      >
+                        Visit Website
+                      </Link>
                   </div>
                 </div>
               ))}
@@ -81,7 +85,8 @@ export const Projects = async ({ searchParams }) => {
         }
         <div className="flex justify-center items-center">
           <Link href="/projects-list">
-            <button title="View All Projects" className="btn-purple-normal-filled">View All Projects</button>
+            <button title="View All Projects"
+              className="btn-purple-normal-filled">View All Projects</button>
           </Link>
         </div>
       </div>

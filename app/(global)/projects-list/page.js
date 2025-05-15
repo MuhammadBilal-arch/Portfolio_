@@ -5,12 +5,17 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 async function getProjects(page = 1, limit = 6) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/projects/get?page=${page}&limit=${limit}`,
-    { cache: "no-store" }
-  );
-  if (!res.ok) throw new Error("Failed to fetch projects");
-  return res.json();
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/projects/get?page=${page}&limit=${limit}`,
+      { cache: "no-store" }
+    );
+    if (!res.ok) throw new Error("Failed to fetch projects");
+    return await res.json();
+  } catch (error) {
+    console.error("getProjects Error:", error);
+    return { projects: [], totalPages: 0 };
+  }
 }
 
 export default async function ProjectsPage({ searchParams }) {
@@ -24,9 +29,9 @@ export default async function ProjectsPage({ searchParams }) {
       <main className="min-h-screen px-5 sm:px-12 md:px-14 lg:px-20 py-10">
         <div className="mx-auto space-y-8 text-center">
           <div className="flex justify-end">
-          <Link href="/">
-            <button className="bg-orange-primary text-white px-5 py-1.5 rounded-md">Back</button>
-          </Link>
+            <Link href="/">
+              <button className="btn-orange-filled">Back</button>
+            </Link>
           </div>
           <div className="space-y-4">
             <Heading title="Projects" />
