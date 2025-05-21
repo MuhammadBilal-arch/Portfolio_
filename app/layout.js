@@ -69,10 +69,19 @@ export default function RootLayout({ children }) {
           <meta property="og:site_name" content="Muhammad Bilal Portfolio" />
           {/* <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" async></script>
           <script src="https://kit.fontawesome.com/3b43a9a3b1.js" async crossOrigin="anonymous"></script> */}
-          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" async></script>
-          <script src="https://kit.fontawesome.com/3b43a9a3b1.js" async crossOrigin="anonymous"></script>
         </head>
         <body className={`${inter.className} ${poppins.className}`}>
+          {/* Load jQuery */}
+          <Script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            strategy="afterInteractive"
+          />
+          {/* Load Font Awesome */}
+          <Script
+            src="https://kit.fontawesome.com/3b43a9a3b1.js"
+            strategy="afterInteractive"
+            crossOrigin="anonymous"
+          />
           <div className="flex flex-col min-h-screen select-none">
             <GoogleAnalyticsWrapper />
             <AOSWrapper>{children}</AOSWrapper>
