@@ -44,7 +44,7 @@ export const Projects = async ({ searchParams }) => {
                   key={index}
                   className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer"
                 >
-                  {item?.images.length > 0 && (
+                  {item?.images?.length > 0 && (
                     <div className="max-h-48 h-48 overflow-hidden">
                       <Image
                         src={item?.images[0] || ''}
