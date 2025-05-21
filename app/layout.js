@@ -3,6 +3,7 @@ import "./globals.css";
 import AOSWrapper from "./components/aos-wrapper";
 import GoogleAnalyticsWrapper from './components/google-analytics';
 import { ClerkProvider } from "@clerk/nextjs";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -66,6 +67,8 @@ export default function RootLayout({ children }) {
           <meta property="og:image" content="https://mb-blue.vercel.app/og-image.jpeg" />
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content="Muhammad Bilal Portfolio" />
+          {/* <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" async></script>
+          <script src="https://kit.fontawesome.com/3b43a9a3b1.js" async crossOrigin="anonymous"></script> */}
           <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" async></script>
           <script src="https://kit.fontawesome.com/3b43a9a3b1.js" async crossOrigin="anonymous"></script>
         </head>

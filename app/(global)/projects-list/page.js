@@ -79,9 +79,6 @@ export default async function ProjectsPage({ searchParams }) {
               </div>) : (
               <div className="text-center text-gray-primary max-h-[50vh] min-h-[50vh] border border-white-primary rounded-md p-4 w-full flex flex-col items-center justify-center justify-self-center">
                 <h1 className="text-xl font-semibold mb-4 text-white">No projects found</h1>
-                <Link href="/projects/add">
-                  <button className="btn-purple-normal-filled">Add Project</button>
-                </Link>
               </div>
             )
           }

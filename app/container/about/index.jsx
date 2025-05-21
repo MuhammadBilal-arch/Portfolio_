@@ -37,6 +37,12 @@ export const About = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="">
                   <div className="text-sm md:text-base Poppins-SemiBold">
+                    Codefinity Sol
+                  </div>
+                  <div className="text-xs sm:text-sm">Dec 2024 - Present</div>
+                </div>
+                <div className="">
+                  <div className="text-sm md:text-base Poppins-SemiBold">
                     Fiction Developers
                   </div>
                   <div className="text-xs sm:text-sm">Nov 2023 - Present</div>
@@ -61,6 +67,16 @@ export const About = () => {
                   </div>
                   <div className="text-xs sm:text-sm">Oct 2020 - Dec 2020</div>
                 </div>
+              </div>
+
+              <div className="pt-6 lg:pt-10">
+              <a
+                href="/files/resume.pdf"
+                download
+                className="hover:bg-orange-primary duration-300 hover:text-white hover:p-3 text-orange-primary bg-transparent border border-orange-primary uppercase text-sm Poppins-SemiBold tracking-wide hover:text-orange-primary p-3 w-full"
+              >
+                Download Resume
+              </a>
               </div>
             </div>
           </div>
