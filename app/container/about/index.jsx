@@ -71,7 +71,7 @@ export const About = () => {
 
               <div className="pt-6 lg:pt-10">
               <a
-                href="/files/resume.pdf"
+                href="/files/cv.pdf"
                 download
                 className="hover:bg-orange-primary duration-300 hover:text-white hover:p-3 text-orange-primary bg-transparent border border-orange-primary uppercase text-sm Poppins-SemiBold tracking-wide hover:text-orange-primary p-3 w-full"
               >
