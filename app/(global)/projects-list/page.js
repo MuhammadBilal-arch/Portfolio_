@@ -4,10 +4,19 @@ import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
+function getApiBaseUrl() {
+  if (process.env.NODE_ENV === "development") {
+    return `http://localhost:${process.env.PORT || 3002}`;
+  }
+
+  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002";
+}
+
 async function getProjects(page = 1, limit = 6) {
   try {
+    const baseUrl = getApiBaseUrl();
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/projects/get?page=${page}&limit=${limit}`,
+      `${baseUrl}/api/projects/get?page=${page}&limit=${limit}`,
       { cache: "no-store" }
     );
     if (!res.ok) throw new Error("Failed to fetch projects");
@@ -46,8 +55,18 @@ export default async function ProjectsPage({ searchParams }) {
                 {projects?.map((item, index) => (
                   <div
                     key={index}
-                    className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer"
+                    className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer relative"
                   >
+                    {item.link || item.links ? (
+                      <a
+                        className="absolute bottom-3 right-3 btn-purple-normal-filled group-hover:bg-orange-primary hover:text-white text-[11px] py-1.5 px-2"
+                        href={item.link || item.links}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Visit Website
+                      </a>
+                    ) : null}
                     {item?.images.length > 0 && (
                       <div className="max-h-48 h-48 overflow-hidden">
                         <Image
@@ -66,13 +85,21 @@ export default async function ProjectsPage({ searchParams }) {
                       <p className="text-xs Poppins-Regular text-left h-12 mb-4 line-clamp-2">
                         {item.description}
                       </p>
-                      <a
-                        className="btn-purple-normal-filled group-hover:bg-orange-primary hover:text-white text-xs"
-                        href={item.links}
-                        target="_blank"
-                      >
-                        Visit Website
-                      </a>
+                      <div className="text-left text-xs text-gray-primary mt-2">
+                        <p className="font-semibold mb-1">Tech Stack</p>
+                        <div className="flex flex-wrap gap-2">
+                          {(item.tech_stack || "Next.js, React")
+                            .split(",")
+                            .map((tech, idx) => (
+                              <span
+                                key={`${tech}-${idx}`}
+                                className="rounded-full border border-purple-primary px-2 py-1 text-[11px]"
+                              >
+                                {tech.trim()}
+                              </span>
+                            ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}

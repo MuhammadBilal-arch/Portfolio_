@@ -29,7 +29,7 @@ export default function ProjectForm() {
             toast.success("Project created successfully!");
             reset();  
         } catch (err) {
-            toast.error("An unexpected error occurred");
+            toast.error(err?.message || "An unexpected error occurred");
             console.error(err);
         } finally {
             setLoading(false);

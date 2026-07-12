@@ -1,25 +1,42 @@
-import prisma from "@/app/utils/lib/prisma";
 import { NextResponse } from "next/server";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { db } from "@/app/utils/lib/firebase";
 
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const page = parseInt(searchParams.get("page") || "1");
-  const limit = parseInt(searchParams.get("limit") || "6");
-  const skip = (page - 1) * limit;
+  const limitSize = parseInt(searchParams.get("limit") || "6");
+  const skip = (page - 1) * limitSize;
 
   try {
-    const totalProjects = await prisma.project.count();
-    const totalPages = Math.ceil(totalProjects / limit);
-    console.log(totalPages,"total pages");
-    const projects = await prisma.project.findMany({
-      skip,
-      take: limit,
-      orderBy: { createdAt: "desc" },
+    if (!db) {
+      return NextResponse.json({ projects: [], totalPages: 0 });
+    }
+
+    const projectsRef = collection(db, "projects");
+    const snapshot = await getDocs(query(projectsRef, orderBy("createdAt", "desc")));
+    const allProjects = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+    const sortedProjects = [...allProjects].sort((a, b) => {
+      const priorityA = Number(a.priority || 0);
+      const priorityB = Number(b.priority || 0);
+
+      if (priorityA !== priorityB) {
+        return priorityB - priorityA;
+      }
+
+      const createdAtA = a.createdAt?.seconds || 0;
+      const createdAtB = b.createdAt?.seconds || 0;
+      return createdAtB - createdAtA;
     });
-    console.log(projects,"response projects"); 
+
+    const totalProjects = sortedProjects.length;
+    const totalPages = Math.max(1, Math.ceil(totalProjects / limitSize));
+    const projects = sortedProjects.slice(skip, skip + limitSize);
+
     return NextResponse.json({ projects, totalPages });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ message: "Could not fetch projects" }, { status: 500 });
+    console.error("Project fetch failed:", error);
+    return NextResponse.json({ projects: [], totalPages: 0 });
   }
 }

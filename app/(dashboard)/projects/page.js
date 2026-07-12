@@ -1,16 +1,30 @@
 import { Heading } from "@/app/components/heading";
-import Image from "next/image";
 import Link from "next/link";
+import { ProjectsListClient } from "./projects-list-client";
 
 export const dynamic = "force-dynamic";
 
+function getApiBaseUrl() {
+  if (process.env.NODE_ENV === "development") {
+    return `http://localhost:${process.env.PORT || 3002}`;
+  }
+
+  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002";
+}
+
 async function getProjects(page = 1, limit = 6) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/projects/get?page=${page}&limit=${limit}`,
-    { cache: "no-store" }
-  );
-  if (!res.ok) throw new Error("Failed to fetch projects");
-  return res.json();
+  try {
+    const baseUrl = getApiBaseUrl();
+    const res = await fetch(
+      `${baseUrl}/api/projects/get?page=${page}&limit=${limit}`,
+      { cache: "no-store" }
+    );
+    if (!res.ok) throw new Error("Failed to fetch projects");
+    return res.json();
+  } catch (error) {
+    console.error("getProjects Error:", error);
+    return { projects: [], totalPages: 0 };
+  }
 }
 
 export default async function ProjectsPage({ searchParams }) {
@@ -30,53 +44,7 @@ export default async function ProjectsPage({ searchParams }) {
             </p>
           </div>
 
-          {/* Projects Grid */}
-          {
-            projects?.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 w-full">
-                {projects?.map((item, index) => (
-                  <div
-                    key={index}
-                    className="bg-gray-extralight p-4 text-gray-normal group overflow-hidden space-y-2 cursor-pointer"
-                  >
-                    {item?.images.length > 0 && (
-                      <div className="max-h-48 h-48 overflow-hidden">
-                        <Image
-                          src={item?.images[0] || ''}
-                          alt={item?.title}  // Always add meaningful alt text
-                          width={500}  // Adjust based on image aspect ratio
-                          height={300}
-                          className="w-full min-h-48 object-center object-cover group-hover:scale-105 duration-1000"
-                        />
-                      </div>
-                    )}
-                    <div className="text-left">
-                      <div className="text-base Poppins-Medium text-purple-primary">
-                        {item.title}
-                      </div>
-                      <p className="text-xs Poppins-Regular text-left h-12 mb-4 line-clamp-2">
-                        {item.description}
-                      </p>
-                      <a
-                        className="btn-purple-normal-filled group-hover:bg-orange-primary hover:text-white text-xs"
-                        href={item.links}
-                        target="_blank"
-                      >
-                        Visit Website
-                      </a>
-                    </div>
-                  </div>
-                ))}
-              </div>) : (
-              <div className="text-center text-gray-primary max-h-[50vh] min-h-[50vh] border border-white-primary rounded-md p-4 w-full flex flex-col items-center justify-center justify-self-center">
-                <h1 className="text-xl font-semibold mb-4 text-white">No projects found</h1>
-                <Link href="/projects/add">
-                  <button className="btn-purple-normal-filled">Add Project</button>
-                </Link>
-              </div>
-            )
-          }
-
+          <ProjectsListClient initialProjects={projects || []} />
 
           {/* Optional Pagination (add conditionally if needed) */}
           <div className="flex justify-center mt-12 space-x-4">

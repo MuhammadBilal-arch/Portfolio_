@@ -1,15 +1,13 @@
 import cloudinary from "@/app/utils/lib/cloudinary";
-import prisma from "@/app/utils/lib/prisma";
 import { NextResponse } from "next/server";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "@/app/utils/lib/firebase";
 
-// Handles POST requests to /api
 export async function POST(request) {
   const formData = await request.formData();
-  console.log(process.env.DATABASE_URL);
-  // Get project details
   const projectTitle = formData.get("title");
   const projectDescription = formData.get("description");
-  const imageFiles = formData.getAll("images"); 
+  const imageFiles = formData.getAll("images");
   const priority = formData.get("priority");
   const link = formData.get("link");
   const type = formData.get("type");
@@ -17,8 +15,8 @@ export async function POST(request) {
 
   try {
     const uploadPromises = imageFiles.map(async (file) => {
-      const buffer = await file.arrayBuffer(); 
-      const bufferFile = Buffer.from(buffer); 
+      const buffer = await file.arrayBuffer();
+      const bufferFile = Buffer.from(buffer);
 
       return new Promise((resolve, reject) => {
         const uploadStream = cloudinary.uploader.upload_stream(
@@ -28,31 +26,36 @@ export async function POST(request) {
             resolve(result);
           }
         );
-        uploadStream.end(bufferFile); 
+        uploadStream.end(bufferFile);
       });
     });
 
     const uploadResults = await Promise.all(uploadPromises);
-    const imageUrls = uploadResults
-      .filter(result => result) // Filter out any undefined results
-      .map(result => result.secure_url);
+    const imageUrls = uploadResults.filter(Boolean).map((result) => result.secure_url);
 
-    // Create the project in the database
-    const newProject = await prisma.project.create({
-      data: {
-        title: projectTitle,
-        description: projectDescription,
-        link: link,
-        type: type,
-        priority: Number(priority),
-        tech_stack: tech_stack,
-        images: imageUrls.length > 0 ? imageUrls : null,
-      },
-    });
+    const newProject = {
+      title: projectTitle,
+      description: projectDescription,
+      link,
+      type,
+      priority: Number(priority),
+      tech_stack,
+      images: imageUrls.length > 0 ? imageUrls : [],
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+    };
 
-    return NextResponse.json({ message: "Project created successfully", data: newProject });
+    const docRef = await addDoc(collection(db, "projects"), newProject);
+
+    return NextResponse.json({ message: "Project created successfully", data: { id: docRef.id, ...newProject } });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ message: "Could not create project" }, { status: 500 });
+    console.error("Project create failed:", error);
+    return NextResponse.json(
+      {
+        message: "Could not create project",
+        error: error?.message || "Unknown error",
+      },
+      { status: 500 }
+    );
   }
 }
