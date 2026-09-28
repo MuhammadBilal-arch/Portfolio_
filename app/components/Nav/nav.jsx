@@ -1,6 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import Link from "next/link";
 import { TypedText } from "../typical";
 import { Link as ScrollLink } from "react-scroll";
 import { MenuList } from "./constant";
@@ -70,6 +71,12 @@ export const Nav = () => {
               {memoizedMenuItems}
             </div>
             <div className="space-x-3 lg:space-x-6 flex">
+              <Link
+                href="/genome-dna"
+                className="py-2 transition-colors hover:text-orange-primary"
+              >
+                Genome DNA
+              </Link>
               <a
                 className="btn-orange-filled"
                 onClick={onGetQuoteClick}  
@@ -97,6 +104,13 @@ export const Nav = () => {
                 {memoizedMenuItems}
               </div>
               <div className="">
+                <Link
+                  href="/genome-dna"
+                  onClick={() => setmenu(false)}
+                  className="mb-8 block text-orange-primary"
+                >
+                  Genome DNA
+                </Link>
                 <a
                   className="btn-orange-filled"
                   // href="https://www.upwork.com/freelancers/~012804554cc1a6a603"
