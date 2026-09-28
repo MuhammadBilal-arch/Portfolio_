@@ -21,7 +21,7 @@ export const About = () => {
               src={ASSETS.PROFILE_IMG.src}
               alt=""
             />
-            I’m an experienced <strong className="text-purple-primary">Full Stack Developer</strong> with 3.5 years of expertise
+            I’m an experienced <strong className="text-purple-primary">Full Stack Developer</strong> with 4+ years of expertise
             in building high-quality, responsive websites and applications. I
             specialize in both frontend and backend development, working
             extensively with modern technologies like JavaScript, Node.js, and
@@ -37,15 +37,21 @@ export const About = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="">
                   <div className="text-sm md:text-base Poppins-SemiBold">
+                    HubexTech
+                  </div>
+                  <div className="text-xs sm:text-sm">June 2025 - Present</div>
+                </div>
+                <div className="">
+                  <div className="text-sm md:text-base Poppins-SemiBold">
                     Codefinity Sol
                   </div>
-                  <div className="text-xs sm:text-sm">Dec 2024 - Present</div>
+                  <div className="text-xs sm:text-sm">Dec 2024 - May 2025</div>
                 </div>
                 <div className="">
                   <div className="text-sm md:text-base Poppins-SemiBold">
                     Fiction Developers
                   </div>
-                  <div className="text-xs sm:text-sm">Nov 2023 - Present</div>
+                  <div className="text-xs sm:text-sm">Nov 2023 - Oct 2024</div>
                 </div>
                 <div className="">
                   <div className="text-sm md:text-base Poppins-SemiBold">
@@ -54,12 +60,6 @@ export const About = () => {
                   <div className="text-xs sm:text-sm">
                     March 2021 - August 2023
                   </div>
-                </div>
-                <div className="">
-                  <div className="text-xs  md:text-base Poppins-SemiBold">
-                    Manasoft
-                  </div>
-                  <div className="text-xs sm:text-sm">Feb 2021 - March</div>
                 </div>
                 <div className="">
                   <div className="text-xs  md:text-base Poppins-SemiBold">
